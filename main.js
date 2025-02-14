@@ -1,4 +1,6 @@
 const width = 800, height = 500, margin = {top: 40, right: 30, bottom: 50, left: 60};
+const estrusData = data.filter(d => d.Estrus === true);
+const nonEstrusData = data.filter(d => d.Estrus === false);
 
 const svg = d3.select("#chart")
   .append("svg")
@@ -57,3 +59,17 @@ d3.csv("data_estrus_hourly.csv").then(data => {
 
 
 });
+d3.select("#cbEstrus").on("change", updateVisibility);
+d3.select("#cbNonEstrus").on("change", updateVisibility);
+
+function updateVisibility() {
+
+  const showEstrus = d3.select("#cbEstrus").property("checked");
+  const showNonEstrus = d3.select("#cbNonEstrus").property("checked");
+
+  svg.selectAll(".lineEstrus")
+    .style("display", showEstrus ? null : "none");
+
+  svg.selectAll(".lineNonEstrus")
+    .style("display", showNonEstrus ? null : "none");
+}
