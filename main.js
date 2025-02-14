@@ -1,6 +1,4 @@
 const width = 800, height = 500, margin = {top: 40, right: 30, bottom: 50, left: 60};
-const estrusData = data.filter(d => d.Estrus === true);
-const nonEstrusData = data.filter(d => d.Estrus === false);
 
 const svg = d3.select("#chart")
   .append("svg")
