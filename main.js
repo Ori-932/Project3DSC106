@@ -57,3 +57,19 @@ d3.csv("data_estrus_hourly.csv").then(data => {
 
 
 });
+d3.select("#cbEstrus").on("change", updateVisibility);
+d3.select("#cbNonEstrus").on("change", updateVisibility);
+
+function updateVisibility() {
+  // Are they checked?
+  const showEstrus = d3.select("#cbEstrus").property("checked");
+  const showNonEstrus = d3.select("#cbNonEstrus").property("checked");
+
+  // Toggle display of the lines
+  // If unchecked, we set "display: none"; if checked, we reset it.
+  svg.selectAll(".lineEstrus")
+    .style("display", showEstrus ? null : "none");
+
+  svg.selectAll(".lineNonEstrus")
+    .style("display", showNonEstrus ? null : "none");
+}
